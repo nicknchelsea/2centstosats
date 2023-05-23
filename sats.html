@@ -29,8 +29,8 @@
                 const data = await response.json();
                 const btcToUsd = data.bpi.USD.rate_float; // 1 BTC to USD rate
                 const satoshiToUsd = btcToUsd / 100000000; // 1 Satoshi to USD rate
-                const usdToSatoshi = 1 / satoshiToUsd; // 1 USD to Satoshi rate
-                document.getElementById('value').innerText = `$1 = ${usdToSatoshi.toFixed(0)} Satoshis`;
+                const usdToSatoshi = 0.02 / satoshiToUsd; // 1 USD to Satoshi rate
+                document.getElementById('value').innerText = `$0.02 = ${usdToSatoshi.toFixed(0)} Satoshis`;
             } catch (error) {
                 console.error('Error:', error);
             }
