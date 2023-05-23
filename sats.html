@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USD to Satoshi</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: black;
+            font-size: 2em;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="value"></div>
+
+    <script>
+        // Fetch the data every second
+        setInterval(fetchData, 1000);
+
+        async function fetchData() {
+            try {
+                const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice/BTC.json');
+                const data = await response.json();
+                const btcToUsd = data.bpi.USD.rate_float; // 1 BTC to USD rate
+                const satoshiToUsd = btcToUsd / 100000000; // 1 Satoshi to USD rate
+                const usdToSatoshi = 1 / satoshiToUsd; // 1 USD to Satoshi rate
+                document.getElementById('value').innerText = `$1 = ${usdToSatoshi.toFixed(0)} Satoshis`;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
