@@ -6,23 +6,33 @@
         body {
             background-color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             color: black;
-            font-size: 2em;
             font-family: Arial, sans-serif;
+        }
+        .header {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .conversion {
+            font-size: 2em;
+        }
+        .phrase {
+            font-size: 1em;
+            text-align: center;
+            margin-top: 2em;
         }
     </style>
 </head>
 <body>
-    <div id="value"></div>
-    <div class="phrase">We live in a Bitcoin World. Giving your 2¢ isn't enough.</div>
-    <br>
-    <br>
-    <br>
+    <div class="header">We live in a Bitcoin world, ensure your opinion retains its value.</div>
     <div id="value" class="conversion"></div>
+
     <script>
         // Fetch the data every second
         setInterval(fetchData, 1000);
@@ -33,8 +43,8 @@
                 const data = await response.json();
                 const btcToUsd = data.bpi.USD.rate_float; // 1 BTC to USD rate
                 const satoshiToUsd = btcToUsd / 100000000; // 1 Satoshi to USD rate
-                const usdToSatoshi = 0.02 / satoshiToUsd; // 1 USD to Satoshi rate
-                document.getElementById('value').innerText = `$0.02 = ${usdToSatoshi.toFixed(0)} Satoshis`;
+                const centsToSatoshi = 0.02 / satoshiToUsd; // 2¢ to Satoshi rate
+                document.getElementById('value').innerText = `2¢ = ${centsToSatoshi.toFixed(0)} Satoshis`;
             } catch (error) {
                 console.error('Error:', error);
             }
